@@ -1,7 +1,7 @@
 import React from 'react';
 import YouTube from 'react-youtube';
 import { YouTubeContainer } from './Youtube.styled';
-
+import { data } from '../../data/data';
 class ReactYouTube extends React.Component {
   render() {
     const opts = {

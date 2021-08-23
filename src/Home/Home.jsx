@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import Menu from '../components/Menu/Menu';
 import ReactYouTube from '../components/YouTube/YouTube';
+import { Main } from './Home.styled';
 
 function Home() {
-  const [videoId, setVideoId] = useState('_nBlN9yp9R8');
+  const [videoId, setVideoId] = useState('__Eo-dvEH7g');
   return (
-    <div>
+    <Main>
+      <Menu />
       <ReactYouTube videoId={videoId} />
-    </div>
+    </Main>
   );
 }
 
