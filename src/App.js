@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
+import Home from './Home/Home';
+
+const GlobalStyle = createGlobalStyle`
+* {
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0
+}
+body {
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Arimo', sans-serif;
+}
+`;
+
+const theme = {
+  primaryColor: '#020202',
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Home />
+      </ThemeProvider>
+    </>
   );
 }
 
