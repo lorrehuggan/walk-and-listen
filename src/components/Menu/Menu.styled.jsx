@@ -5,15 +5,18 @@ export const Wrapper = styled.section`
   position: absolute;
   left: 0;
   top: 0;
-  height: 100vh;
+  height: 30vh;
   width: 30rem;
   padding: 1rem;
-  background-color: ${({ theme }) => theme.primaryColor};
+  border-radius: 0px 0px 24px 24px;
+  background-color: #000000b3;
   z-index: 1;
+  transform: translateY(${({ toggle }) => (toggle ? '0' : '-98%')});
+  transition: transform 0.5s ease;
 `;
 
 export const Heading = styled.h1`
-  font-size: 3rem;
+  font-size: 2rem;
   text-align: center;
   color: #ffffff;
   margin-bottom: 1rem;
@@ -21,22 +24,22 @@ export const Heading = styled.h1`
 
 export const Location = styled.div`
   width: 100%;
-
   border-radius: 12px;
   overflow: hidden;
 `;
 
 export const LocationHeaderContainer = styled.div`
   width: 100%;
-  background-color: ${({ theme }) => theme.spaceCadet};
+  border: 2px solid gray;
   height: 2rem;
   margin-bottom: 1rem;
   border-radius: 12px;
+  padding: 2rem;
   ${flex}
 `;
 
 export const LocationHeader = styled.p`
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: #ffffff;
 `;
 
@@ -52,14 +55,18 @@ export const City = styled.div`
   height: fit-content;
   margin: 0rem 0.5rem;
   margin-bottom: 1rem;
-  padding: 0.25rem;
+  padding: 0.5rem;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.spaceCadet};
   color: #ffffff;
   cursor: pointer;
   transition: 0.3s ease-out;
+  text-transform: uppercase;
   &:hover {
     background-color: ${({ theme }) => theme.heliotropeGray};
+  }
+  &:active {
+    transform: scale(0.95);
   }
 `;
 
@@ -79,14 +86,17 @@ export const Icon = styled.div`
 `;
 
 export const ButtonContainer = styled.div`
-  width: 50%;
+  width: 45%;
   ${flex}
   color: #ffffff;
-  font-size: 2rem;
+  font-size: 3rem;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 `;
 
 export const Volume = styled.input``;
 
-export const Audio = styled.audio``;
+export const Audio = styled.audio`
+  width: 100%;
+  height: 5rem;
+`;

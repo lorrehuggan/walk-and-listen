@@ -1,9 +1,12 @@
-import React from 'react';
-import { data } from '../../data/data';
+import React, { useState } from 'react';
+import { data, music } from '../../data/data';
+
+import { Howl, Howler } from 'howler';
 import {
   BiRewindCircle,
   BiPlayCircle,
   BiFastForwardCircle,
+  BiPauseCircle,
 } from 'react-icons/bi';
 import {
   ButtonContainer,
@@ -20,20 +23,35 @@ import {
   Audio,
 } from './Menu.styled';
 
-function Menu() {
-  console.log(data[0].music.day);
+function Menu({ currentCity, toggle }) {
+  const [play, setPlay] = useState(true);
+  const [station, setStation] = useState(0);
+
+  const radio = new Howl({
+    src: [music[station]],
+    html5: true,
+    volume: 0.3,
+  });
+  const audioHandler = () => {
+    if (play === true) {
+      setPlay(false);
+      radio.play();
+    } else {
+      setPlay(true);
+      Howler.stop();
+    }
+  };
+
   return (
-    <Wrapper>
-      <Heading>Walk and Listen</Heading>
+    <Wrapper toggle={toggle}>
+      <Heading>City: {data[currentCity].city}</Heading>
       <Location>
         <LocationHeaderContainer>
-          <LocationHeader>
-            Find a city to take a virtual stroll through
-          </LocationHeader>
+          <LocationHeader>Find a city to take a virtual stroll</LocationHeader>
         </LocationHeaderContainer>
         <LocationCities direction="row" align="left" justify="center">
           {data.map((d) => {
-            return <City>{d.city}</City>;
+            return <City key={d.city}>{d.city}</City>;
           })}
         </LocationCities>
       </Location>
@@ -43,15 +61,17 @@ function Menu() {
           <Icon>
             <BiRewindCircle />
           </Icon>
-          <Icon>
-            <BiPlayCircle />
+          <Icon onClick={audioHandler}>
+            {play ? <BiPlayCircle /> : <BiPauseCircle />}
           </Icon>
           <Icon>
             <BiFastForwardCircle />
           </Icon>
         </ButtonContainer>
         <Volume type="range" min="1" max="100" value="25" />
-        <audio src={data[0].music.day} crossorigin autoplay></audio>
+        {/* <Audio src={data[currentCity].music.day} controller autoplay>
+          hello
+        </Audio> */}
       </Controls>
     </Wrapper>
   );
